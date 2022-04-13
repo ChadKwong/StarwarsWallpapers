@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Generator for Tie Fighter Themed Wallpapers</title>
+
+        <style>
+            body {
+                background-color: #000000;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Link to d3 lib -->
+        <script src="//d3js.org/d3.v7.min.js"></script>
+        <script src="tiefighter.js"></script>
+        <script src="generators.js"></script>
+        
+
+        <!-- JS and d3 code between script tags-->
+        <script>
+            //exhaust line size on tie fighter (larger the number, smaller the line) i
+            var exhaust = 90;
+
+            //adding svg elemnt to body
+            var w = 5000, h = 5000;
+            //var w = 1500, h = 880;
+            var svg = d3.select("body").append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .attr("border", "1px");
+        
+            //star generator accepts random, randomHSL, and various color strings as the star color
+            starGenerator(30000, "random");
+            
+            //planet generator (count, "none"/"mixed"/"all", true=realistic gradient, min size, random size factor, spots = "none")
+            //all->all planets have lines, mixed->some planets have lines
+            planetGenerator(7, "mixed", true, 50, 300, "mixed");
+
+            //small planet generator (count, "none"/"mixed"/"all", true=realistic gradient, min size, random size factor, spots = false)
+            planetGenerator(90, "none", true, 1, 3, "none");
+
+            //tie fighter generator (count, minSize = 75, sizeRange = 75, abstractColor=false)
+            tieGenerator(50, 10, 30);
+
+            //tie fighter generator2 for mingling random colors with normals
+            tieGenerator(5, 25, 25, true);
+
+
+
+        </script>
+    </body>
+</html>
